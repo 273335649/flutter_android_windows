@@ -1,6 +1,6 @@
 {
-    "name": "flutter_git_app",
-    "short_name": "flutter_git_app",
+    "name": "hc_mes_app",
+    "short_name": "hc_mes_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

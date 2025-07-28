@@ -1,5 +1,5 @@
-name: flutter_git_app
-description: "A new Flutter project."
+name: hc_mes_app
+description: "A new Flutter hc_mes_app."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,6 +34,25 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  webview_windows: ^0.4.0
+  flutter_inappwebview: ^6.1.5
+  provider: ^6.1.2
+  flutter_easyloading: ^3.0.5
+  dio: ^5.3.0
+  sm_crypto: ^1.0.3
+  encrypt: ^5.0.1
+  uuid: ^3.0.7
+  sp_util: ^2.0.3
+  common_utils: ^2.1.0
+  shared_preferences: ^2.2.2
+  dart_amqp: ^0.2.5
+  window_manager: ^0.3.8
+  media_kit: ^1.1.10 # Primary package.
+  media_kit_video: ^1.2.4 # For video rendering.
+  media_kit_libs_video: ^1.0.4
+  auto_updater: ^0.1.7
+  image_painter: ^0.7.1
+  yaml: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +75,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
