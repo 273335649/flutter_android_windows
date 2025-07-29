@@ -85,7 +85,7 @@ class Request {
     try {
       if (isShow) {
         EasyLoading.show();
-        print('加载中');
+        // print('加载中');
       }
       String clientId = LoginPrefs.getclientId() ?? '';
       String accessToken = isZDToken

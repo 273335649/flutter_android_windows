@@ -110,9 +110,9 @@ class _PositionPageState extends State<PositionPage> {
               .map((item) => item['stationName'])
               .toList()
               .any((element) => element.contains('全检'));
-          print('权限判断：${finalData['hasReview']}');
+          // print('权限判断：${finalData['hasReview']}');
           LoginPrefs.saveUserInfo(jsonEncode(finalData));
-          print('查看接口数据1111 ${resData}');
+          // print('查看接口数据1111 ${resData}');
           // if (resData.length > 0) {
           //   // var finalData = jsonDecode(LoginPrefs.getUserInfo() ?? '');
           //   finalData['employeeId'] = resData[0]['empId'];
@@ -201,7 +201,7 @@ class _PositionPageState extends State<PositionPage> {
       // );
       if (processResponse["success"]) {
         List resData = processResponse["data"] ?? [];
-        print('查看接口数据1111 ${resData}');
+        // print('查看接口数据1111 ${resData}');
 
         positionList = resData
             .map((e) => ({
@@ -229,7 +229,7 @@ class _PositionPageState extends State<PositionPage> {
           "processId": processSelect['id'],
         });
     var resData = response["data"] ?? {};
-    print('12345${response}');
+    // print('12345${response}');
     positionList = resData
         .map((e) => ({'id': e['id'], 'name': e['name'], 'code': e['code']}))
         .toList();
@@ -243,7 +243,7 @@ class _PositionPageState extends State<PositionPage> {
 
     if (response["success"]) {
       var resData = response["data"]['records'] ?? [];
-      print('12345${response}');
+      // print('12345${response}');
       equList = resData
           .map((e) => ({'id': e['id'], 'name': e['name'], 'code': e['code']}))
           .toList();
@@ -296,7 +296,7 @@ class _PositionPageState extends State<PositionPage> {
     finalData['equipmentCode'] = equSelect['code'];
     finalData['equipmentId'] = equSelect['id'];
     finalData['equipmentName'] = equSelect['name'];
-    print('12345${finalData}');
+    // print('12345${finalData}');
     LoginPrefs.saveUserInfo(jsonEncode(finalData));
     await Request.get("/mes-biz/api/mes/client/user/recordLoginStation",
         params: {

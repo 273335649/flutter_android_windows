@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hc_mes_app/pages/positionPage/index.dart';
 import 'package:provider/provider.dart';
 import 'common/login_prefs.dart';
 import './pages/login/login.dart';
 import './pages/home/home.dart';
+import './pages/positionPage/index.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import './common/dio_request.dart';
 import 'package:window_manager/window_manager.dart';
@@ -11,8 +11,8 @@ import 'package:media_kit/media_kit.dart'; // Provides [Player], [Media], [Playl
 // import 'package:media_kit_video/media_kit_video.dart';
 
 import 'package:auto_updater/auto_updater.dart';
-import 'package:hc_mes_app/utils/init.dart';
-import '../../common/constant.dart';
+import 'utils/init.dart';
+import 'common/constant.dart';
 import 'dart:io';
 
 // 获取当前设备的IP地址
@@ -34,11 +34,13 @@ Map getLocalMacAddress() {
       .split('(')
       .first
       .trim();
-  print(lines
-      .where((element) => element.contains('物理地址'))
-      .toList()
-      .map((item) => item.split(':').last.trim())
-      .toList());
+  print(
+    lines
+        .where((element) => element.contains('物理地址'))
+        .toList()
+        .map((item) => item.split(':').last.trim())
+        .toList(),
+  );
   print(lines.where((element) => element.contains('IPv4')).toList());
   print('物理地址：${macAddress}');
   print('ip地址${ipAddress}');
@@ -79,7 +81,7 @@ void main() async {
   //   }
   // }
 
-//热更新
+  //热更新
   // await getFeedURL();
   String feedURL = '${Constant.baseUrlDev}/mes-biz/api/common/appVersion';
   // String feedURL = '${Constant.baseUrlFat}/hc-mes/api/app/version';
@@ -89,7 +91,7 @@ void main() async {
   await autoUpdater.checkForUpdates();
   await autoUpdater.setScheduledCheckInterval(3600);
 
-//初始化尺寸
+  //初始化尺寸
   MediaKit.ensureInitialized();
   await windowManager.ensureInitialized();
   await LoginPrefs.init();
@@ -147,17 +149,17 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           // fontFamily: 'Schyler',
           scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.pressed)) {
-                  return Color(0x472667FF);
-                }
-                if (states.contains(MaterialState.hovered)) {
-                  return Color(0x472667FF);
-                }
+            thumbColor: MaterialStateProperty.resolveWith<Color>((
+              Set<MaterialState> states,
+            ) {
+              if (states.contains(MaterialState.pressed)) {
                 return Color(0x472667FF);
-              },
-            ),
+              }
+              if (states.contains(MaterialState.hovered)) {
+                return Color(0x472667FF);
+              }
+              return Color(0x472667FF);
+            }),
             trackColor: MaterialStateProperty.all(Colors.transparent), // 轨道颜色
           ),
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffC1D3FF)),
@@ -167,13 +169,14 @@ class _MyAppState extends State<MyApp> {
           builder: (context) {
             final userModel = context.read<UserModel>();
             return Consumer<UserModel>(
-                builder: (context, counter, child) => (userModel.token != ''
-                    ? userModel.info['processId'].isNotEmpty &&
+              builder: (context, counter, child) => (userModel.token != ''
+                  ? userModel.info['processId'].isNotEmpty &&
                             userModel.info['positionId'].isNotEmpty
                         ? Home()
                         : PositionPage()
-                    // : Home(changeToken: changeToken)
-                    : Login()));
+                  // : Home(changeToken: changeToken)
+                  : Login()),
+            );
 
             // userModel.token != ''
             //     ? Home(changeToken: changeToken)
@@ -317,9 +320,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,

@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
             margin: const EdgeInsets.only(left: 30, top: 1025),
             child: Row(
               children: [
-                TimeWidget(),
+                // TimeWidget(), // TODO 每秒更新时间
                 Text(
                   ' |   登录人：${userinfo['username']}   |   产线：${userinfo['lineOrgPath']}   ${userinfo['lineName']}   岗位：${userModel.info['positionId']?['name']}   当前工序：${userinfo['processCode']}-${userinfo['processName']}   当前设备：${userinfo['equipmentName']}  ',
                   style: TextStyle(color: Color(0xFFF3a6fce), fontSize: 18),
@@ -181,20 +181,33 @@ class _TimeWidgetState extends State<TimeWidget> {
   }
 }
 
+// 页面类型枚举
+enum PageType { h5, flutter }
+
 List arr = [
   {
     'title': '工单',
+    'type': PageType.h5,
     // 'widget': ProductionOrder(),
-    'widget': const WebViewComponent(initialUrl: 'http://190.75.16.210:30004/'),
+    'url': 'http://localhost:8000/UtilsModule',
   },
-  {'title': '人工机加', 'widget': ManualMachining()},
-  {'title': '工艺查询', 'widget': ProcessInquiry()},
-  {'title': '技术通知', 'widget': TechnicalNotices()},
-  {'title': '返工返修入库', 'widget': Unqualified()},
-  {'title': '不合格评审', 'widget': Review()},
-  {'title': '安灯呼叫', 'widget': Call()},
-  {'title': '安灯响应', 'widget': Response()},
-  {'title': '设备维保', 'widget': Maintenance()},
+  {'title': '巡检', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '成品检验', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '作业文件', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '返修', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '呼叫', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '响应', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '设备', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  {'title': '工具箱', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  // {'title': '工具箱', 'type': PageType.h5, 'url': 'http://localhost:8000/home'},
+  // {'title': '人工机加', 'widget': ManualMachining()},
+  // {'title': '工艺查询', 'widget': ProcessInquiry()},
+  // {'title': '技术通知', 'widget': TechnicalNotices()},
+  // {'title': '返工返修入库', 'widget': Unqualified()},
+  // {'title': '不合格评审', 'widget': Review()},
+  // {'title': '安灯呼叫', 'widget': Call()},
+  // {'title': '安灯响应', 'widget': Response()},
+  // {'title': '设备维保', 'widget': Maintenance()},
   {'title': '日志清单', 'widget': Log()},
   {'title': 'demo', 'widget': Demo()},
 ];
@@ -337,9 +350,25 @@ class Pages extends StatefulWidget {
 }
 
 class _PagesState extends State<Pages> {
+  WebViewComponent? _webViewInstance;
+  int? _lastH5Index;
+
   @override
   Widget build(BuildContext context) {
     final userModel = Provider.of<UserModel>(context);
+    final int activeIndex = userModel.activeIndex;
+    final isH5 = arr[activeIndex]['type'] == PageType.h5;
+
+    // 只在切到h5页面时创建WebViewComponent
+    if (isH5) {
+      // 如果切换了h5页面，可以根据需要重建WebViewComponent或处理url
+      if (_webViewInstance == null || _lastH5Index != activeIndex) {
+        _lastH5Index = activeIndex;
+        _webViewInstance = WebViewComponent(
+          initialUrl: arr[activeIndex]['url'] ?? '',
+        );
+      }
+    }
 
     return Column(
       children: [
@@ -353,7 +382,7 @@ class _PagesState extends State<Pages> {
             ),
           ),
           child: Text(
-            '${arr[userModel.activeIndex]['title']} ',
+            '${arr[activeIndex]['title']} ',
             style: TextStyle(
               fontSize: 32,
               color: Color(0xffffffff),
@@ -361,7 +390,17 @@ class _PagesState extends State<Pages> {
             ),
           ),
         ),
-        arr[userModel.activeIndex]['widget'],
+        Expanded(
+          child: Stack(
+            children: [
+              // WebViewComponent 只创建一次，切换到flutter页面时隐藏
+              if (_webViewInstance != null)
+                Offstage(offstage: !isH5, child: _webViewInstance!),
+              // 非h5页面时渲染flutter widget
+              if (!isH5) arr[activeIndex]?['widget'] ?? SizedBox.shrink(),
+            ],
+          ),
+        ),
       ],
     );
   }

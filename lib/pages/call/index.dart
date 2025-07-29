@@ -58,8 +58,7 @@ class _TechnicalNoticesState extends State<Call> {
                     // ),
                   ])
             });
-
-            print(subitem);
+            // print(subitem);
           } else {
             showDialogFunction(context, {
               'width': 500.0,
@@ -112,7 +111,7 @@ class _TechnicalNoticesState extends State<Call> {
   //安灯呼叫
   Future<bool> submitDetails(id) async {
     var infoData = jsonDecode(LoginPrefs.getUserInfo() ?? '');
-    print('用户信息：${infoData}');
+    // print('用户信息：${infoData}');
 
     var params = {
       'eventId': id,
@@ -123,15 +122,15 @@ class _TechnicalNoticesState extends State<Call> {
       'stationId': infoData['stationId'],
       'stationName': infoData['stationName'],
     };
-    print('接口提交信息${params}');
+    // print('接口提交信息${params}');
 
     var response = await Request.post("/mes-biz/api/mes/client/andon/andonCall",
         data: params);
     if (response["success"]) {
       var resData = response["data"];
 
-      print(response["data"]);
-      print(resData);
+      // print(response["data"]);
+      // print(resData);
       // dataList = resData;
       EasyLoading.showSuccess(response["message"]);
       setState(() {});
@@ -145,7 +144,6 @@ class _TechnicalNoticesState extends State<Call> {
   //获取页面详情数据
   Future<void> getDetails(isShow) async {
     var infoData = jsonDecode(LoginPrefs.getUserInfo() ?? '');
-    print('用户信息：${infoData}');
 
     var params = {
       'lineId': infoData['lineId'],
@@ -153,7 +151,6 @@ class _TechnicalNoticesState extends State<Call> {
       'isAll': true
       // 'barCode': username.text,
     };
-    print('接口提交信息${params}');
 
     var response =
         await Request.get("/mes-biz/api/mes/client/andon/getAndonType",
@@ -169,8 +166,6 @@ class _TechnicalNoticesState extends State<Call> {
       dataList = resData;
 
       if (isShow) {
-        print(response["data"]);
-        print(resData);
         for (var i = 0; i < dataList.length; i++) {
           int length = dataList[i]['andonEventList'].length;
 
@@ -185,7 +180,6 @@ class _TechnicalNoticesState extends State<Call> {
         }
       }
     } else {
-      print(response["message"]);
       EasyLoading.showError(response["message"]);
     }
     if (mounted) {

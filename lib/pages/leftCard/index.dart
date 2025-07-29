@@ -368,7 +368,7 @@ class _LeftCardState extends State<LeftCard> {
           "processId": processSelect['id'],
         });
     var resData = response["data"] ?? {};
-    print('12345${response}');
+    // // print('12345${response}');
     positionSelect['id'] = resData[0]['id']!;
     positionSelect['name'] = resData[0]['name']!;
     positionSelect['code'] = resData[0]['code']!;
@@ -384,7 +384,7 @@ class _LeftCardState extends State<LeftCard> {
 
     if (response["success"]) {
       var resData = response["data"]['records'] ?? [];
-      print('12345${response}');
+      // // print('12345${response}');
       if (resData.length > 0) {
         equSelect['id'] = resData[0]['id']!;
         equSelect['name'] = resData[0]['name']!;
@@ -408,7 +408,7 @@ class _LeftCardState extends State<LeftCard> {
           "orgId": positionSelect['id'],
         });
     var resData = response["data"] ?? {};
-    print('12345${resData}');
+    // print('12345${resData}');
     var finalData = jsonDecode(LoginPrefs.getUserInfo() ?? '');
     finalData['lineName'] = resData['name'];
     finalData['lineCode'] = resData['code'];
@@ -424,7 +424,7 @@ class _LeftCardState extends State<LeftCard> {
     finalData['equipmentCode'] = equSelect['code'];
     finalData['equipmentId'] = equSelect['id'];
     finalData['equipmentName'] = equSelect['name'];
-    print('12345${finalData}');
+    // print('12345${finalData}');
     LoginPrefs.saveUserInfo(jsonEncode(finalData));
     await Request.get("/mes-biz/api/mes/client/user/recordLoginStation",
         params: {

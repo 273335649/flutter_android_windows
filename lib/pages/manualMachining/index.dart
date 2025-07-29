@@ -218,7 +218,7 @@ class _ManualMachiningState extends State<ManualMachining> {
 
     if (response["success"]) {
       List resData = response["data"] ?? [];
-      print('12345${resData}');
+      // print('12345${resData}');
       for (var i = 0; i < resData.length; i++) {
         resData[i]['key'] = i + 1;
       }
@@ -315,7 +315,7 @@ class _ManualMachiningState extends State<ManualMachining> {
 
     if (response["success"]) {
       var resData = response["data"]['records'] ?? [];
-      print('12345${response}');
+      // print('12345${response}');
       equList = resData
           .map((e) => ({'id': e['id'], 'name': e['name'], 'code': e['code']}))
           .toList();
