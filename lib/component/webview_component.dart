@@ -3,7 +3,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class WebViewComponent extends StatefulWidget {
   final String initialUrl;
-  const WebViewComponent({Key? key, required this.initialUrl}) : super(key: key);
+  const WebViewComponent({Key? key, required this.initialUrl})
+    : super(key: key);
 
   @override
   State<WebViewComponent> createState() => _WebViewComponentState();
@@ -14,11 +15,18 @@ class _WebViewComponentState extends State<WebViewComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return InAppWebView(
-      initialUrlRequest: URLRequest(url: WebUri(widget.initialUrl)),
-      onWebViewCreated: (controller) {
-        _webViewController = controller;
-      },
+    return Expanded(
+      child: Listener(
+        onPointerDown: (event) {
+          FocusScope.of(context).unfocus();
+        },
+        child: InAppWebView(
+          initialUrlRequest: URLRequest(url: WebUri(widget.initialUrl)),
+          onWebViewCreated: (controller) {
+            _webViewController = controller;
+          },
+        ),
+      ),
     );
   }
-} 
+}

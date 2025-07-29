@@ -20,6 +20,7 @@ import '../leftCard/index.dart';
 import '../log/index.dart';
 import 'package:yaml/yaml.dart';
 import 'dart:io';
+import '../../component/webview_component.dart';
 
 List btnImgList = [
   'images/btn-gongdan',
@@ -34,13 +35,13 @@ List btnImgList = [
   'images/btn-tuichu',
 ];
 //表格文字样式
-TextStyle _labelTextStyle =
-    const TextStyle(fontSize: 20, color: Color(0xffffffff));
+TextStyle _labelTextStyle = const TextStyle(
+  fontSize: 20,
+  color: Color(0xffffffff),
+);
 
 class Home extends StatefulWidget {
-  Home({
-    super.key,
-  });
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -88,47 +89,50 @@ class _HomeState extends State<Home> {
     final userModel = Provider.of<UserModel>(context);
     print('更新');
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          width: 1920,
-          height: 1080,
-          color: const Color(0xff001030),
-        ),
+      body: Stack(
+        children: [
+          Container(width: 1920, height: 1080, color: const Color(0xff001030)),
 
-        HeaderMenu(),
+          HeaderMenu(),
 
-        //左侧生产报工
-        LeftCard(),
-        //右侧内容组件
-        Container(
-            width: 1340,
+          //左侧生产报工
+          // LeftCard(),
+          //右侧内容组件
+          Container(
+            // width: 1340,
             height: 844,
-            margin: const EdgeInsets.only(left: 550, top: 180),
+            margin: const EdgeInsets.only(left: 0, top: 180),
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/table-card-bgc.png'),
-                    fit: BoxFit.fill)),
-            child: Pages()),
+              image: DecorationImage(
+                image: AssetImage('images/table-card-bgc.png'),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: Pages(),
+          ),
 
-        Container(
+          Container(
             height: 26,
             width: 1860,
             // color: Colors.red,
             margin: const EdgeInsets.only(left: 30, top: 1025),
-            child: Row(children: [
-              TimeWidget(),
-              Text(
-                ' |   登录人：${userinfo['username']}   |   产线：${userinfo['lineOrgPath']}   ${userinfo['lineName']}   岗位：${userModel.info['positionId']?['name']}   当前工序：${userinfo['processCode']}-${userinfo['processName']}   当前设备：${userinfo['equipmentName']}  ',
-                style: TextStyle(color: Color(0xFFF3a6fce), fontSize: 18),
-              ),
-              Text(
-                '当前版本：${versionNum}',
-                style: TextStyle(color: Color(0xFFF3a6fce), fontSize: 18),
-              )
-            ]))
-      ],
-    ));
+            child: Row(
+              children: [
+                TimeWidget(),
+                Text(
+                  ' |   登录人：${userinfo['username']}   |   产线：${userinfo['lineOrgPath']}   ${userinfo['lineName']}   岗位：${userModel.info['positionId']?['name']}   当前工序：${userinfo['processCode']}-${userinfo['processName']}   当前设备：${userinfo['equipmentName']}  ',
+                  style: TextStyle(color: Color(0xFFF3a6fce), fontSize: 18),
+                ),
+                Text(
+                  '当前版本：${versionNum}',
+                  style: TextStyle(color: Color(0xFFF3a6fce), fontSize: 18),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -152,8 +156,10 @@ class _TimeWidgetState extends State<TimeWidget> {
 
   void _updateTime() {
     DateTime now = DateTime.now();
-    String formattedTime =
-        DateUtil.formatDate(now, format: "yyyy-MM-dd   HH:mm:ss");
+    String formattedTime = DateUtil.formatDate(
+      now,
+      format: "yyyy-MM-dd   HH:mm:ss",
+    );
 
     setState(() {
       _currentTime = formattedTime;
@@ -176,7 +182,11 @@ class _TimeWidgetState extends State<TimeWidget> {
 }
 
 List arr = [
-  {'title': '工单', 'widget': ProductionOrder()},
+  {
+    'title': '工单',
+    // 'widget': ProductionOrder(),
+    'widget': const WebViewComponent(initialUrl: 'http://190.75.16.210:30004/'),
+  },
   {'title': '人工机加', 'widget': ManualMachining()},
   {'title': '工艺查询', 'widget': ProcessInquiry()},
   {'title': '技术通知', 'widget': TechnicalNotices()},
@@ -223,7 +233,7 @@ class UserModel extends ChangeNotifier {
     childToken = token;
     notifyListeners();
   }
-//存储跨组件调用方法
+  //存储跨组件调用方法
 
   var fun;
   var begin;
@@ -338,17 +348,20 @@ class _PagesState extends State<Pages> {
           height: 64,
           padding: const EdgeInsets.only(left: 56, top: 8),
           decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/table-card-title.png'))),
+            image: DecorationImage(
+              image: AssetImage('images/table-card-title.png'),
+            ),
+          ),
           child: Text(
             '${arr[userModel.activeIndex]['title']} ',
             style: TextStyle(
-                fontSize: 32,
-                color: Color(0xffffffff),
-                fontWeight: FontWeight.w700),
+              fontSize: 32,
+              color: Color(0xffffffff),
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
-        arr[userModel.activeIndex]['widget']
+        arr[userModel.activeIndex]['widget'],
       ],
     );
   }

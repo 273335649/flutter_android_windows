@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>auto_updater_example</title>
+        <description>Most recent updates to auto_updater_example</description>
+        <language>en</language>
+      
+        <item>
+            <title>Version 1.0.3</title>
+            #发行说明-读取html方式(2选1)
+            <sparkle:releaseNotesLink>
+                https://your_domain/your_path/release_notes.html
+            </sparkle:releaseNotesLink>
+            #发行说明-写死方式(2选1)
+            <description>
+                <![CDATA[
+            <ul>
+              <li>1、测试更新1.0.3</li>
+              <li>2、新增XX功能</li>
+            </ul>
+                ]]>
+            </description>
+            <pubDate>Sun, 16 Feb 2022 12:00:00 +0800</pubDate>
+            #你更新程序的地址
+            <enclosure url="http://192.168.10.112:9000/360humi-hai/hc_mes_app-1.0.3%2B1.0.3-windows-setup.exe"
+                       sparkle:dsaSignature="MDwCHCZmgShI3PkjzxankB/ptVzFFuvRHQqU1fGClzsCHARaa+083JMQUYCjqi/DuLyt01M+QXF7VHyksio="
+                       sparkle:version="1.0.3"
+                       sparkle:os="windows"
+                       length="0"
+                       type="application/octet-stream" />
+        </item>
+    </channel>
+</rss>

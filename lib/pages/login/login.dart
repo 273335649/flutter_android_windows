@@ -38,7 +38,30 @@ class _LoginState extends State<Login> {
     usernamefocusNode.addListener(_handleFocusChanged);
     passwordfocusNode.addListener(_handleFocusChanged);
     scancodefocusNode.addListener(_handleFocusChanged);
+    // 本地默认
+    username.text = '17366953616';
+    password.text = '1234567';
     super.initState();
+    _checkAutoLogin();
+  }
+
+  void _checkAutoLogin() async {
+    String? token = LoginPrefs.getToken();
+    int? loginTime = LoginPrefs.getLoginTime();
+    if (token != null && loginTime != null) {
+      int now = DateTime.now().millisecondsSinceEpoch;
+      // 30分钟 = 30 * 60 * 1000 毫秒
+      if (now - loginTime < 30 * 60 * 1000) {
+        // 免登录，跳转到主页面
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Home()),
+        );
+      } else {
+        // 超时，清除token
+        LoginPrefs.saveToken('');
+        LoginPrefs.saveLoginTime(0);
+      }
+    }
   }
 
   @override
@@ -543,6 +566,8 @@ class _LoginBtnState extends State<LoginBtn> {
                             res["data"]["loginToken"]["access_token"]),
                         LoginPrefs.saveUserInfo(
                             jsonEncode(res["data"]["loginUser"])),
+                        // 新增：保存当前时间戳
+                        LoginPrefs.saveLoginTime(DateTime.now().millisecondsSinceEpoch),
                         await getUserInfo(),
                         userModel.setToken('123'),
                       }

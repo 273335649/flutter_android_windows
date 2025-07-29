@@ -110,4 +110,14 @@ class LoginPrefs {
   static void clearLogin() {
     _prefs.clear();
   }
+
+  // 保存登录时间
+  static Future<void> saveLoginTime(int timestamp) async {
+    await _prefs.setInt('login_time', timestamp);
+  }
+
+  // 获取登录时间
+  static int? getLoginTime() {
+    return _prefs.getInt('login_time');
+  }
 }
