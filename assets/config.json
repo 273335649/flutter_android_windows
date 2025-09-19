@@ -1,0 +1,14 @@
+{
+  "domainUrl": {
+    "dev": "https://mes-pda-hf-dev.local.360humi.com",
+    "fat": "http://192.168.10.107:3008",
+    "prod": "http://172.24.0.75:3008",
+    "local": "http://172.22.1.38:9001"
+  },
+  "hfBaseUrl": {
+    "dev": "https://privatization-gateway-hf-dev.local.360humi.com",
+    "fat": "http://192.168.10.107:3000",
+    "prod": "http://172.24.0.75:3000",
+    "local": "https://privatization-gateway-hf-dev.local.360humi.com"
+  }
+}

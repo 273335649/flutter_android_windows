@@ -1,0 +1,77 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "hf-flutter_windows_android_app (fat)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=ENV=fat"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (prod)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=ENV=prod"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (dev)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=ENV=dev"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (fat profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define=ENV=fat"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (dev profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define=ENV=dev"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (fat release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=ENV=fat"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (dev release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=ENV=dev"
+            ]
+        },
+        {
+            "name": "hf-flutter_windows_android_app (Android Emulator)",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554",
+            "args": [
+                "--dart-define=ENV=fat"
+            ]
+        }
+    ]
+}
