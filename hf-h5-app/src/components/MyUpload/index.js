@@ -36,6 +36,8 @@ export default (props = {}) => {
     propsItem,
     fileType = "",
     icon,
+    onSuccessChange,
+    title,
   } = props;
 
   const [fileList, setFileList] = useState([]);
@@ -135,7 +137,7 @@ export default (props = {}) => {
         onChange?.(formFileList);
         return updatedList;
       });
-
+      onSuccessChange?.(newFile, file);
       onSuccess(newFile, file);
       message.success(`${file.name} 上传成功`);
     } catch (error) {
@@ -216,7 +218,7 @@ export default (props = {}) => {
             )
           }
         >
-          {uploading ? "上传中..." : "上传"}
+          {uploading ? "上传中..." : title || "上传"}
         </Button>
       </Upload>
     </div>

@@ -7,6 +7,7 @@ import usePopup from "@/hooks/usePopup";
 import TableContent from "@/components/TableContent";
 import TableComp from "@/components/TableComp";
 import common from "../common.less";
+import MyUpload from "@/components/MyUpload";
 // 上传图片
 const UploadImageModal = () => {
   const { closePopup } = usePopup();
@@ -14,16 +15,24 @@ const UploadImageModal = () => {
   const [searchParams] = useSearchParams();
 
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const handleOk = () => {
-    setIsModalOpen(false);
-    // 1. 通知Flutter关闭全屏容器
-    closePopup();
-  };
 
+  const [testPictures, setTestPictures] = useState([]);
+  // 工步报工测试岗位批量上传图片和Excel DTO
+  // createBy	创建人ID		true	
+  // string
+  // createName	上传人		true	
+  // string
+  // createTime	上传时间		true	
+  // string
+  // file	文件上传json		true	
+  // string
+  // size	文件大小(kb)		true	
+  // integer
+  // sortNo	序号		true	
   const handleCancel = () => {
     setIsModalOpen(false);
     // 1. 通知Flutter关闭全屏容器
-    closePopup();
+    closePopup(JSON.stringify(testPictures));
   };
   const columns = [
     {
@@ -87,7 +96,6 @@ const UploadImageModal = () => {
       className={`${common.content} custom-modal`}
       title={searchParams.get("title") || "上传图片"}
       open={isModalOpen}
-      onOk={handleOk}
       onCancel={handleCancel}
       footer={false}
       width={1542}
@@ -106,8 +114,32 @@ const UploadImageModal = () => {
         </Col>
         <Col span={24} className={common["upload-btn"]}>
           <Space size={"large"}>
-            <Button icon={<CameraOutlined style={{ color: "#18FEFE" }} />}>拍照</Button>
-            <Button icon={<UploadOutlined style={{ color: "#18FEFE" }} />}>上传</Button>
+            <MyUpload
+              icon={<CameraOutlined style={{ color: "#18FEFE" }} />}
+              fileSize={100}
+              fileNum={999}
+              fileType={["file-JPG", "file-JPEG", "file-PNG"]}
+              onSuccessChange={(newFile, file) => {
+                console.log(newFile, file, "拍照");
+              }}
+              originProps={{
+                showUploadList: false
+              }}
+              title={"拍照"}
+            />
+            <MyUpload
+              icon={<UploadOutlined style={{ color: "#18FEFE" }} />}
+              fileSize={100}
+              fileNum={999}
+              fileType={["file-JPG", "file-JPEG", "file-PNG"]}
+              onSuccessChange={(newFile, file) => {
+                console.log(newFile, file, "正常图内容");
+              }}
+              originProps={{
+                showUploadList: false
+              }}
+            />
+            {/* <Button icon={<UploadOutlined style={{ color: "#18FEFE" }} />}>上传</Button> */}
             <span style={{ color: "#AAB3C1" }}>最大支持100M支持格式jpg/png/mp4,最多上传20张</span>
           </Space>
         </Col>

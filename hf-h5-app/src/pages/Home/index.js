@@ -177,16 +177,6 @@ export default () => {
               type={"primary"}
               onClick={() => {
                 openPopup({
-                  url: "/modal/uploadImage",
-                });
-              }}
-            >
-              上传图片
-            </Button>
-            <Button
-              type={"primary"}
-              onClick={() => {
-                openPopup({
                   url: "/modal/stepRequisition",
                   modalProps: {
                     thingsType: "FIXTURE",
@@ -199,6 +189,31 @@ export default () => {
               }}
             >
               工步-领用
+            </Button>
+            <Button
+              type={"primary"}
+              onClick={() => {
+                openPopup({
+                  url: "/modal/uploadImage",
+                });
+              }}
+            >
+              上传图片
+            </Button>
+            <Button
+              className="base-btn"
+              onClick={() =>
+                openPopup({
+                  url: "/modal/testData",
+                  modalProps: {
+                    onCancel: (res) => {
+                      console.log(res, "2225881");
+                    },
+                  }
+                })
+              }
+            >
+              测试数据
             </Button>
           </Flex>
         );

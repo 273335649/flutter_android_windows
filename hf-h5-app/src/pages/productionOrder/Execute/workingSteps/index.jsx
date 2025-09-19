@@ -99,6 +99,11 @@ const WorkingSteps = () => {
                 onClick={() =>
                   openPopup({
                     url: "/modal/testData",
+                    modalProps:{
+                      onCancel: (res) => {
+                        console.log(res, "2225881");
+                      },
+                    }
                   })
                 }
               >

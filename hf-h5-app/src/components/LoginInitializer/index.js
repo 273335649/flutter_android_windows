@@ -7,7 +7,7 @@ const LoginInitializer = () => {
   useEffect(() => {
     const initializeLogin = async () => {
       const loginInfoString = localStorage.getItem("loginInfo");
-      if (!window.flutter_inappwebview && !loginInfoString) {
+      if (!window.flutter_inappwebview && !loginInfoString && process.env.APP_LOCAL !== "true") {
         // mock登录
         // loginInfo = (await getUserInfo())?.data;
         setIsModalOpen(true);

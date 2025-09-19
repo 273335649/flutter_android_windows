@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { Modal, Row, Col, Button, Flex, Image, Space, Tabs } from "antd";
+import React, { useCallback, useState } from "react";
+import { Modal, Row, Col, Button, Flex, Image, Space, Tabs, Form } from "antd";
 import { CameraOutlined, UploadOutlined } from "@ant-design/icons";
 
 import { useSearchParams } from "umi";
 import usePopup from "@/hooks/usePopup";
 import TableContent from "@/components/TableContent";
 import TableComp from "@/components/TableComp";
-import common from "../common.less";
+import common from '../common.less';
+import MyUpload from "@/components/MyUpload";
 // 测试数据
 const TestDataModal = () => {
   const { closePopup } = usePopup();
@@ -14,17 +15,14 @@ const TestDataModal = () => {
   const [searchParams] = useSearchParams();
 
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const handleOk = () => {
-    setIsModalOpen(false);
-    // 1. 通知Flutter关闭全屏容器
-    closePopup();
-  };
 
-  const handleCancel = () => {
+  const [testExcels, setTestExcels] = useState([]);
+
+  const handleCancel = useCallback(() => {
     setIsModalOpen(false);
     // 1. 通知Flutter关闭全屏容器
-    closePopup();
-  };
+    closePopup(JSON.stringify(testExcels));
+  }, [testExcels]);
   const columns = [
     {
       header: "编号",
@@ -77,7 +75,6 @@ const TestDataModal = () => {
       className={`${common.content} custom-modal`}
       title={searchParams.get("title") || "上传数据"}
       open={isModalOpen}
-      onOk={handleOk}
       onCancel={handleCancel}
       footer={false}
       width={1542}
@@ -86,8 +83,19 @@ const TestDataModal = () => {
       <Row className="row-btn">
         <Col span={24} className={common["upload-btn"]}>
           <Space size={"large"}>
-            <Button icon={<UploadOutlined style={{ color: "#18FEFE" }} />}>上传</Button>
-            <span style={{ color: "#AAB3C1" }}>最大支持100M，支持格式xlsx/xls，最多上传20个</span>
+            <MyUpload
+              icon={<UploadOutlined style={{ color: "#18FEFE" }} />}
+              fileSize={100}
+              fileNum={999}
+              fileType={["file-XLSX"]}
+              onSuccessChange={(newFile, file) => {
+                console.log(newFile, file, "newFile132s");
+              }}
+              originProps={{
+                showUploadList: false,
+              }}
+            />
+            {/* <Button icon={<UploadOutlined style={{ color: "#18FEFE" }} />}>上传</Button> */}
           </Space>
         </Col>
         <Col span={24} className="container">
