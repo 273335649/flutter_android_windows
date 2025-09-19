@@ -1,0 +1,152 @@
+.qualified {
+  border: 1px solid #52fefe !important;
+  box-shadow: 0 0 16px 0 rgb(0 240 255 / 60%) inset;
+
+  &:hover {
+    background: rgb(0 222 236 / 60%) !important;
+  }
+}
+
+.input-content-bg {
+  background-color: #050a32;
+}
+
+.unqualified {
+  background: rgb(255 0 0 / 10%);
+  border: 1px solid #b52929 !important;
+  box-shadow: 0 0 16px 0 rgb(245 46 46 / 60%) inset;
+
+  &:hover {
+    background: rgb(255 0 0 / 60%) !important;
+  }
+}
+
+.okbtn {
+  cursor: pointer;
+  text-align: center;
+  line-height: 42px;
+  border: 1px solid #52fefe;
+  border-radius: 3px;
+  box-shadow: 0 0 16px 0 rgb(0 240 255 / 60%) inset;
+}
+
+.quaselected {
+  background: rgb(0 222 236 / 60%) !important;
+}
+
+.unokbtn {
+  cursor: pointer;
+  text-align: center;
+  line-height: 42px;
+  background: rgb(255 0 0 / 10%);
+  border: 1px solid #b52929;
+  border-radius: 3px;
+  box-shadow: 0 0 16px 0 rgb(245 46 46 / 60%) inset;
+}
+
+.unquaselected {
+  background: rgb(255 0 0 / 60%) !important;
+}
+
+.btn {
+  width: 92px !important;
+  height: 42px !important;
+  color: #fff !important;
+}
+
+.input {
+  // padding-left: 5px;
+  font-size: 22px;
+  color: #fff;
+  background: #001b44;
+  border-color: #54a1ff;
+}
+
+.loginiput {
+  padding: 0 16px;
+  font-size: 22px;
+  color: #c1d3ff;
+  background: #050a32;
+  border: 1px solid #4b74dc;
+  letter-spacing: 0.08px;
+
+  input {
+    padding-left: 16px;
+    background: transparent !important;
+  }
+}
+
+.inputborder {
+  border: 1px solid #4b74dc;
+  border-radius: 3px;
+}
+
+.areainput {
+  input {
+    height: 100% !important;
+  }
+}
+
+.content {
+  :global {
+    .ant-modal-content {
+      padding-bottom: 0 !important;
+    }
+
+    table {
+      background-color: transparent;
+    }
+
+    .ant-tabs-nav {
+      &::before {
+        border-color: #1a5794;
+      }
+    }
+
+    .ant-tabs {
+      .ant-tabs-tab {
+        padding: 10px 20px;
+        margin: 0;
+        color: #aab3c1;
+
+        .ant-tabs-tab-btn {
+          font-size: 20px;
+        }
+
+        &.ant-tabs-tab-active {
+          .ant-tabs-tab-btn {
+            color: #fff !important;
+          }
+        }
+      }
+
+      .ant-tabs-ink-bar {
+        background: #18fefe;
+        // display: none;
+      }
+    }
+
+    .ant-input-number-input,
+    .ant-input {
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .ant-input-number {
+      text-indent: 0;
+    }
+
+    .ant-form {
+      width: 100%;
+    }
+  }
+
+  .upload-btn {
+    :global {
+      .ant-btn {
+        padding: 9px 24px;
+        border: 1px solid #0094ff;
+      }
+    }
+  }
+}

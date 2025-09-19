@@ -1,0 +1,311 @@
+.left-info {
+  padding: 10px;
+  width: 448px;
+  height: 874px;
+  font-size: 20px;
+  color: #fff;
+  background: #001030;
+  border: 1px solid #2667ff;
+
+  .title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    height: 32px;
+    font-size: 22px;
+    line-height: 32px;
+    color: #fff;
+
+    &::before {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 3px;
+      height: 16px;
+      background: #00ffdf;
+      content: "";
+    }
+
+    .tips {
+      display: inline-block;
+      padding-left: 28px;
+      margin-left: 5px;
+      width: 258px;
+      height: 40px;
+      font-size: 16px;
+      background: url("@/assets/tips.png") no-repeat;
+      background-size: 100% 100%;
+      flex: 1;
+      line-height: 40px;
+    }
+  }
+
+  //当前人员信息
+  .person-info {
+    display: flex;
+    align-items: center;
+    padding: 23px 8px;
+    margin-top: 8px;
+    color: rgb(255 255 255 / 80%);
+    background: #062969;
+
+    .pic {
+      padding: 5px;
+      // margin-right: 10px;
+      width: 90px;
+      height: 90px;
+      background: #133e8c;
+    }
+
+    .info-list {
+      margin-left: 10px;
+
+      .center {
+        margin: 10px 0;
+      }
+
+      .station {
+        display: flex;
+        align-items: center;
+
+        .current {
+          width: 256px;
+        }
+
+        .change-btn {
+          width: 64px;
+          height: 32px;
+          line-height: 32px;
+          text-align: center;
+          color: #6fa6ff;
+          border: 1px solid #6fa6ff;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  //当前产品信息
+  .product-info {
+    font-size: 20px;
+    color: #fff;
+
+    .title {
+      margin: 10px 0;
+    }
+
+    input::placeholder {
+      font-size: 20px;
+      color: rgb(255 255 255 / 60%);
+    }
+
+    .code-item {
+      margin-bottom: 10px;
+      height: 70px;
+      border: 2px solid #6593ff;
+      box-shadow: 0 0 24px 0 #008ef5 inset;
+      line-height: 70px;
+
+      .code-show {
+        padding-left: 20px;
+      }
+
+      .scan-code {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        height: 100%;
+
+        input {
+          color: #fff;
+        }
+
+        .ant-form-item {
+          margin-bottom: 0;
+        }
+
+        .ant-input {
+          // width: 322px;
+          height: 54px;
+          font-size: 20px;
+          color: #fff;
+          border: 1px solid #54a1ff;
+          line-height: 54px;
+        }
+      }
+
+      .image-switch {
+        display: flex;
+        align-items: center;
+        margin-left: 6px;
+        cursor: pointer;
+      }
+    }
+
+    .product-list {
+      position: relative;
+      height: 474px;
+      font-size: 20px;
+      color: #fff;
+
+      .product-item {
+        padding: 0 20px;
+        height: 57px;
+        line-height: 57px;
+
+        .remark-input {
+          font-size: 20px;
+          color: rgb(255 255 255 / 80%);
+          background: #050a32;
+          border: 1px solid #4b74dc;
+          border-radius: 3px;
+        }
+
+        .name {
+          display: inline-block;
+          width: 120px;
+        }
+
+        .status-color {
+          color: #1bff49;
+        }
+
+        span:last-of-type {
+          color: rgb(255 255 255 / 80%);
+        }
+      }
+
+      .product-item:nth-of-type(2n + 1) {
+        background: #062969;
+      }
+    }
+
+    .nobtn-list {
+      .product-item {
+        height: 66px !important;
+        line-height: 66px !important;
+      }
+    }
+
+    .product-list-scroll {
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .product-item {
+        height: 42px;
+        line-height: 42px;
+
+        .name {
+          margin-right: 24px;
+          width: 100px;
+          height: 100%;
+          text-align: right;
+        }
+      }
+
+      .ant-form-item {
+        margin-bottom: 0;
+        height: 100%;
+
+        .ant-form-item-row {
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          .ant-form-item-label {
+            width: 100px;
+            height: 42px;
+            line-height: 42px;
+            text-align: right;
+            color: rgb(255 255 255 / 80%);
+
+            label {
+              height: 100%;
+              font-size: 20px;
+              color: #fff;
+
+              &::after {
+                content: none !important;
+              }
+            }
+          }
+
+          .ant-form-item-control {
+            margin-left: 24px;
+          }
+
+          .ant-select-selector {
+            height: 36px;
+            font-size: 20px;
+          }
+
+          .ant-select-arrow {
+            margin-top: -14px;
+            width: 28px;
+            height: 28px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url("@/assets/chevron-right.png");
+          }
+
+          .ant-select-suffix {
+            display: none;
+          }
+
+          .ant-form-item-extra {
+            position: absolute;
+            top: 5px;
+            right: -50px;
+            width: 80%;
+            font-size: 14px;
+            color: #aab3c1;
+            flex-wrap: wrap;
+            line-height: 15px;
+          }
+
+          .ant-input {
+            height: 36px;
+            font-size: 20px;
+            color: rgb(255 255 255 / 80%);
+            line-height: 36px;
+          }
+        }
+
+        .ant-btn-default {
+          span {
+            color: rgb(255 255 255 / 60%);
+          }
+        }
+      }
+    }
+
+    .bottom-btn {
+      position: sticky;
+      bottom: 0;
+      cursor: pointer;
+
+      .ant-btn {
+        margin-top: 5px;
+        width: 100%;
+        height: 52px;
+        font-size: 22px;
+        line-height: 52px;
+        font-weight: 700;
+      }
+
+      .pass-btn {
+        border: 1px solid #52fefe;
+        box-shadow: 0 0 16px 0 rgb(0 240 255 / 60%) inset;
+      }
+
+      .confirm-btn {
+        background: rgb(0 94 236 / 44%);
+        border: 1px solid #448dff;
+        box-shadow: 0 0 16px 0 rgb(0 148 255 / 60%) inset;
+      }
+    }
+  }
+}

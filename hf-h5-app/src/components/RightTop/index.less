@@ -1,0 +1,37 @@
+.right-top {
+  color: #fff;
+
+  .top-tips {
+    padding: 0 18px;
+    height: 40px;
+    font-size: 18px;
+    color: rgb(255 255 255 / 80%);
+    background: linear-gradient(90deg, rgb(31 154 255 / 30%), rgb(18 56 153 / 0%) 100%);
+    line-height: 40px;
+  }
+
+  .right-title {
+    position: relative;
+    padding: 0 18px;
+    height: 48px;
+    font-size: 22px;
+    background: rgb(31 94 255 / 10%);
+    line-height: 48px;
+    border-top: 1px solid #2667ff;
+    border-bottom: 1px solid #2667ff;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: inline-block;
+      margin-top: -15px;
+      width: 6px;
+      height: 32px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("@/assets/right-title.png");
+      content: "";
+    }
+  }
+}

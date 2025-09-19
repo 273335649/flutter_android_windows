@@ -1,0 +1,25 @@
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background: rgb(0 94 236 / 24%);
+  border: 1px solid #448dff;
+  border-radius: 3px;
+
+  .selected {
+    width: 13px;
+    height: 13px;
+    background: #18fefe;
+  }
+}
+
+.text-cont {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+}

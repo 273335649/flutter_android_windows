@@ -1,0 +1,13 @@
+{
+  "extends": "./src/.umi/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "preserve",
+    // 支持的文件扩展名类型.ts，.tsx，和.d.ts,true还包含.js和.jsx
+    "allowJs": true
+    // "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "README.md"],
+  "compileOnSave": false
+}
